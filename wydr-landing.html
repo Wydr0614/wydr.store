@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WYDR — Wide Toe Box Leather Shoes | Early Access</title>
+  <meta name="description" content="WYDR — Premium wide toe box leather shoes crafted for comfort and style. Sign up for early access to our first collection."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #111010;
+      --mid: #3a3838;
+      --soft: #6b6868;
+      --pale: #d8d6d6;
+      --pale2: #eeecec;
+      --bg: #faf9f7;
+      --bg2: #f2f0ed;
+      --gold: #b8935a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 52px;
+      background: rgba(250,249,247,0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.4s;
+    }
+    nav.scrolled { border-bottom-color: var(--pale); }
+
+    .nav-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex; align-items: center; gap: 32px;
+    }
+
+    .nav-tag {
+      font-size: 9px; letter-spacing: 0.45em;
+      text-transform: uppercase; color: var(--soft);
+      font-weight: 500;
+    }
+
+    .nav-dot {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(60px, 8vw, 120px) clamp(32px, 5vw, 72px) clamp(60px, 8vw, 120px) clamp(40px, 7vw, 112px);
+      border-right: 1px solid var(--pale);
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-size: 9px; letter-spacing: 0.55em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 36px;
+      display: flex; align-items: center; gap: 12px;
+      opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 28px; height: 1px;
+      background: var(--gold);
+    }
+
+    .logo-word {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(52px, 9vw, 110px);
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 12px;
+      opacity: 0; animation: riseIn 1s cubic-bezier(0.16,1,0.3,1) 0.25s forwards;
+    }
+
+    .logo-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(13px, 1.4vw, 17px);
+      font-style: italic;
+      color: var(--soft);
+      letter-spacing: 0.08em;
+      margin-bottom: 52px;
+      opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.35s forwards;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 500; line-height: 1.05;
+      letter-spacing: -0.01em; color: var(--ink);
+      margin-bottom: 28px;
+      opacity: 0; animation: riseIn 1s cubic-bezier(0.16,1,0.3,1) 0.45s forwards;
+    }
+    .hero-headline em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      font-size: 14px; letter-spacing: 0.01em;
+      color: var(--mid); font-weight: 400;
+      line-height: 1.9; max-width: 400px;
+      margin-bottom: 44px;
+      opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
+    }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.75s forwards;
+    }
+    .tag {
+      font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--mid); border: 1px solid var(--pale);
+      padding: 8px 16px; background: var(--bg2);
+    }
+
+    /* ── HERO RIGHT — FORM ── */
+    .hero-right {
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: clamp(60px, 8vw, 120px) clamp(40px, 7vw, 112px) clamp(60px, 8vw, 120px) clamp(32px, 5vw, 72px);
+      background: var(--bg2);
+      opacity: 0; animation: riseIn 1s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+    }
+
+    .form-label-top {
+      font-size: 9px; letter-spacing: 0.55em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .form-label-top::before {
+      content: '';
+      display: block; width: 20px; height: 1px;
+      background: var(--gold);
+    }
+
+    .form-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.2vw, 48px);
+      font-weight: 500; line-height: 1.1;
+      color: var(--ink); margin-bottom: 10px;
+    }
+    .form-headline em { font-style: italic; color: var(--gold); }
+
+    .form-sub {
+      font-size: 13px; color: var(--mid);
+      font-weight: 400; letter-spacing: 0.01em;
+      line-height: 1.8; margin-bottom: 44px;
+    }
+
+    /* Fields */
+    .field-group {
+      display: flex; flex-direction: column;
+      margin-bottom: 28px;
+    }
+
+    .field-row {
+      position: relative;
+      border-bottom: 1px solid var(--pale);
+      transition: border-color 0.3s;
+    }
+    .field-row:first-child { border-top: 1px solid var(--pale); }
+    .field-row:focus-within { border-color: var(--gold); }
+
+    .field-row label {
+      display: block;
+      font-size: 8px; letter-spacing: 0.45em;
+      text-transform: uppercase; color: var(--soft);
+      font-weight: 600; padding-top: 18px;
+    }
+
+    .field-row input {
+      width: 100%; background: transparent; border: none; outline: none;
+      padding: 6px 0 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 400;
+      letter-spacing: 0.02em; color: var(--ink);
+      caret-color: var(--gold);
+    }
+    .field-row input::placeholder { color: var(--pale); }
+
+    .field-row label .req { color: var(--gold); font-size: 11px; }
+
+    /* Submit */
+    .submit-btn {
+      width: 100%; padding: 18px;
+      background: var(--ink); color: #fff;
+      border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9px; font-weight: 600;
+      letter-spacing: 0.5em; text-transform: uppercase;
+      transition: background 0.3s, letter-spacing 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .submit-btn::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .submit-btn:hover::after { transform: translateX(0); }
+    .submit-btn span { position: relative; z-index: 1; }
+    .submit-btn:hover { letter-spacing: 0.6em; }
+
+    .form-note {
+      font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--soft); margin-top: 18px; text-align: center;
+    }
+
+    /* Success */
+    .form-success {
+      display: none; text-align: center; padding: 40px 0;
+    }
+    .form-success .s-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 1px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      font-size: 20px; color: var(--gold);
+    }
+    .form-success p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 500; font-style: italic;
+      color: var(--ink); line-height: 1.5;
+    }
+    .form-success span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9px; letter-spacing: 0.4em;
+      text-transform: uppercase; color: var(--soft);
+      margin-top: 16px; font-style: normal;
+    }
+
+    /* ── FEATURES ── */
+    #features {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--pale);
+    }
+
+    .feature {
+      padding: clamp(44px, 6vw, 80px) clamp(28px, 4vw, 60px);
+      border-right: 1px solid var(--pale);
+      display: flex; flex-direction: column;
+      transition: background 0.3s;
+    }
+    .feature:last-child { border-right: none; }
+    .feature:hover { background: var(--bg2); }
+
+    .feature-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px; font-weight: 500;
+      color: var(--gold); letter-spacing: 0.3em;
+      margin-bottom: 24px;
+    }
+
+    .feature-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 500; margin-bottom: 16px;
+      color: var(--ink); line-height: 1.2;
+    }
+    .feature-title em { font-style: italic; color: var(--gold); }
+
+    .feature-text {
+      font-size: 13px; line-height: 1.9;
+      color: var(--mid); font-weight: 400;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--pale);
+    }
+
+    .about-left {
+      padding: clamp(80px, 10vw, 140px) clamp(40px, 7vw, 112px);
+      border-right: 1px solid var(--pale);
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--bg2);
+    }
+
+    .about-eyebrow {
+      font-size: 9px; letter-spacing: 0.55em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 28px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .about-eyebrow::before {
+      content: '';
+      display: block; width: 20px; height: 1px;
+      background: var(--gold);
+    }
+
+    .about-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(30px, 3.8vw, 56px);
+      font-weight: 500; line-height: 1.1; color: var(--ink);
+    }
+    .about-headline em { font-style: italic; color: var(--gold); }
+
+    .about-right {
+      padding: clamp(80px, 10vw, 140px) clamp(40px, 7vw, 112px);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .about-body {
+      font-size: 15px; line-height: 2;
+      color: var(--mid); font-weight: 400;
+    }
+    .about-body p + p { margin-top: 22px; }
+    .about-body em { font-style: italic; color: var(--ink); font-weight: 500; }
+
+    /* ── CTA BAND ── */
+    #cta-band {
+      border-top: 1px solid var(--pale);
+      background: var(--ink);
+      color: #fff;
+      text-align: center;
+      padding: clamp(72px, 10vw, 120px) clamp(24px, 6vw, 80px);
+      position: relative;
+      overflow: hidden;
+    }
+    #cta-band::before {
+      content: 'WYDR';
+      position: absolute;
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(120px, 20vw, 280px);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.03);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4.5vw, 64px);
+      font-weight: 500; line-height: 1.1;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+
+    .cta-sub {
+      font-size: 10px; letter-spacing: 0.45em;
+      text-transform: uppercase; color: rgba(255,255,255,0.4);
+      margin-bottom: 44px;
+      position: relative;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 18px 52px;
+      border: 1px solid var(--gold);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9px; font-weight: 600;
+      letter-spacing: 0.5em; text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, letter-spacing 0.3s;
+      position: relative;
+      background: transparent;
+    }
+    .cta-btn:hover {
+      background: var(--gold);
+      letter-spacing: 0.6em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--pale);
+      padding: 28px clamp(40px, 7vw, 112px);
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy {
+      font-size: 9px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--soft);
+    }
+    .footer-url {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px; color: var(--soft);
+      font-style: italic; letter-spacing: 0.08em;
+    }
+    .footer-ig {
+      font-size: 9px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--soft);
+      text-decoration: none;
+    }
+    .footer-ig:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rd1 { transition-delay: 0.1s; }
+    .rd2 { transition-delay: 0.22s; }
+    .rd3 { transition-delay: 0.34s; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-dot { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { border-right: none; border-bottom: 1px solid var(--pale); }
+      #features { grid-template-columns: 1fr; }
+      .feature { border-right: none; border-bottom: 1px solid var(--pale); }
+      .feature:last-child { border-bottom: none; }
+      #about { grid-template-columns: 1fr; }
+      .about-left { border-right: none; border-bottom: 1px solid var(--pale); }
+      footer { flex-direction: column; align-items: flex-start; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">WYDR</a>
+    <div class="nav-right">
+      <span class="nav-tag">Coming Soon</span>
+      <div class="nav-dot"></div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+
+    <!-- LEFT: Branding -->
+    <div class="hero-left">
+      <p class="hero-eyebrow">Wide Toe Box · Premium Leather</p>
+
+      <div class="logo-word">WYDR</div>
+      <p class="logo-sub">What You Doing Right Now?</p>
+
+      <h1 class="hero-headline">
+        Walk wider.<br><em>Live bolder.</em>
+      </h1>
+
+      <p class="hero-sub">
+        Premium leather shoes with a wide toe box — designed for natural comfort without compromising on style. Your feet deserve better.
+      </p>
+
+      <div class="hero-tags">
+        <span class="tag">Wide Toe Box</span>
+        <span class="tag">Full Grain Leather</span>
+        <span class="tag">Limited Drops</span>
+        <span class="tag">Bengaluru Made</span>
+        <span class="tag">Early Access</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="hero-right">
+      <p class="form-label-top">Request Early Access</p>
+      <h2 class="form-headline">
+        Be first<br><em>in line.</em>
+      </h2>
+      <p class="form-sub">
+        Fill in your details below and we'll notify you the moment the collection drops.
+      </p>
+
+      <form id="wl-form" name="early-access" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="early-access">
+        <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <div class="field-group">
+          <div class="field-row">
+            <label for="f-name">Full Name <span class="req">*</span></label>
+            <input id="f-name" type="text" name="name" placeholder="e.g. Arjun Rao" required autocomplete="name"/>
+          </div>
+          <div class="field-row">
+            <label for="f-email">Email Address <span class="req">*</span></label>
+            <input id="f-email" type="email" name="email" placeholder="e.g. arjun@email.com" required autocomplete="email"/>
+          </div>
+          <div class="field-row">
+            <label for="f-phone">Phone Number</label>
+            <input id="f-phone" type="tel" name="phone" placeholder="e.g. +91 98765 43210" autocomplete="tel"/>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">
+          <span>Secure My Early Access</span>
+        </button>
+        <p class="form-note">No spam. Just the drop, when it's ready.</p>
+      </form>
+
+      <div class="form-success" id="form-success">
+        <div class="s-icon">✓</div>
+        <p>You're on the list.<span>We'll be in touch before the drop goes live.</span></p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="feature reveal">
+      <p class="feature-num">01</p>
+      <h3 class="feature-title">Wide <em>Toe Box</em></h3>
+      <p class="feature-text">
+        Engineered with a naturally wide toe box that lets your toes splay and breathe. No more cramped, uncomfortable footwear.
+      </p>
+    </div>
+    <div class="feature reveal rd1">
+      <p class="feature-num">02</p>
+      <h3 class="feature-title">Full Grain <em>Leather</em></h3>
+      <p class="feature-text">
+        Crafted from premium full-grain veg-tanned leather that ages beautifully. Each pair develops a unique patina over time.
+      </p>
+    </div>
+    <div class="feature reveal rd2">
+      <p class="feature-num">03</p>
+      <h3 class="feature-title">Built to <em>Last</em></h3>
+      <p class="feature-text">
+        Handcrafted in Bengaluru with meticulous attention to detail. Durable construction that stands the test of time, not fast fashion.
+      </p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-left">
+      <p class="about-eyebrow reveal">The Brand</p>
+      <h2 class="about-headline reveal rd1">
+        Not just<br>a shoe.<br><em>A movement.</em>
+      </h2>
+    </div>
+    <div class="about-right">
+      <div class="about-body reveal rd2">
+        <p>
+          WYDR was born from a simple belief — your shoes should fit <em>your</em> feet, not the other way around. We're challenging the industry standard of narrow, uncomfortable footwear with premium leather shoes designed around the natural shape of your foot.
+        </p>
+        <p>
+          Wide toe box meets timeless leather craftsmanship. Every pair is built for people who refuse to choose between comfort and style. We're not making shoes for everyone — we're making them for the ones who walk their own way.
+        </p>
+        <p>
+          The first drop is coming. Be ready.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section id="cta-band">
+    <h2 class="cta-headline reveal">Don't miss<br><em>the drop.</em></h2>
+    <p class="cta-sub reveal rd1">Limited spots · First collection</p>
+    <a href="#hero" class="cta-btn reveal rd2">Get Early Access</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">© 2026 WYDR. All rights reserved.</span>
+    <span class="footer-url">wydr.store</span>
+    <a href="https://instagram.com/wydr.official" class="footer-ig" target="_blank">@wydr.official</a>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Form submission via Netlify Forms
+    const form = document.getElementById('wl-form');
+    const btn  = document.getElementById('submit-btn');
+    const succ = document.getElementById('form-success');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.querySelector('span').textContent = 'Submitting…';
+      btn.style.opacity = '0.6';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString()
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          succ.style.display = 'block';
+        } else {
+          btn.querySelector('span').textContent = 'Try Again';
+          btn.style.opacity = '1';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.querySelector('span').textContent = 'Try Again';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
