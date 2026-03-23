@@ -174,14 +174,14 @@
     /* Product Grid */
     .product-grid {
       display: grid;
-      grid-template-columns: 1.3fr 0.85fr 0.85fr;
-      grid-template-rows: auto auto;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 2px;
     }
 
     .product-cell {
       background: var(--cream);
       overflow: hidden; position: relative;
+      aspect-ratio: 1 / 1;
     }
     .product-cell img {
       width: 100%; height: 100%; object-fit: cover;
@@ -189,10 +189,6 @@
       display: block;
     }
     .product-cell:hover img { transform: scale(1.04); }
-
-    .product-cell.tall { grid-row: span 2; aspect-ratio: auto; }
-    .product-cell.tall img { height: 100%; min-height: 560px; }
-    .product-cell:not(.tall) { aspect-ratio: 1 / 1; }
 
     .product-cell-label {
       position: absolute; bottom: 20px; left: 20px;
@@ -359,17 +355,17 @@
       <h2 class="section-title reveal">Two colourways.<br>One silhouette.</h2>
     </div>
     <div class="product-grid">
-      <div class="product-cell tall reveal">
+      <div class="product-cell reveal">
         <img src="wydr-tan-top-2.png" alt="WYDR Derby tan top-down view" />
         <span class="product-cell-label">Tan · Top</span>
       </div>
       <div class="product-cell reveal">
-        <img src="wydr-insole.png" alt="WYDR branded insole detail" />
-        <span class="product-cell-label">Insole Detail</span>
-      </div>
-      <div class="product-cell reveal">
         <img src="wydr-black-side.png" alt="WYDR Derby black side view" />
         <span class="product-cell-label">Black · Side</span>
+      </div>
+      <div class="product-cell reveal">
+        <img src="wydr-insole.png" alt="WYDR branded insole detail" />
+        <span class="product-cell-label">Insole Detail</span>
       </div>
     </div>
   </section>
