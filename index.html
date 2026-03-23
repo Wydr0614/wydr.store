@@ -1,661 +1,481 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WYDR — Wide Toe Box Leather Shoes | Early Access</title>
-  <meta name="description" content="WYDR — Premium wide toe box leather shoes crafted for comfort and style. Sign up for early access to our first collection."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>WYDR — Shoes Built for Your Feet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --ink: #111010;
-      --mid: #3a3838;
-      --soft: #6b6868;
-      --pale: #d8d6d6;
-      --pale2: #eeecec;
-      --bg: #faf9f7;
-      --bg2: #f2f0ed;
-      --gold: #b8935a;
+      --cream: #f7f4ef;
+      --off-white: #fdfcfa;
+      --ink: #1a1814;
+      --mid: #6b6560;
+      --tan: #c5966e;
+      --tan-light: #e8d5bc;
+      --rule: rgba(26,24,20,0.12);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
+      background: var(--off-white);
       color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
       overflow-x: hidden;
-    }
-
-    /* ── GRAIN OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1000;
     }
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 22px 52px;
-      background: rgba(250,249,247,0.9);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.4s;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 48px;
+      background: rgba(253,252,250,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
     }
-    nav.scrolled { border-bottom-color: var(--pale); }
-
     .nav-logo {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 0.4em;
-      color: var(--ink);
-      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 500; letter-spacing: 0.25em;
+      text-decoration: none; color: var(--ink);
     }
-
-    .nav-right {
-      display: flex; align-items: center; gap: 32px;
-    }
-
     .nav-tag {
-      font-size: 9px; letter-spacing: 0.45em;
-      text-transform: uppercase; color: var(--soft);
-      font-weight: 500;
-    }
-
-    .nav-dot {
-      width: 8px; height: 8px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.7); }
+      font-size: 0.7rem; font-weight: 400; letter-spacing: 0.2em;
+      color: var(--mid); text-transform: uppercase;
     }
 
     /* ── HERO ── */
-    #hero {
+    .hero {
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      padding-top: 72px;
+      padding-top: 80px;
     }
 
     .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(60px, 8vw, 120px) clamp(32px, 5vw, 72px) clamp(60px, 8vw, 120px) clamp(40px, 7vw, 112px);
-      border-right: 1px solid var(--pale);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 48px 80px 72px;
       position: relative;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute; right: 0; top: 15%; bottom: 15%;
+      width: 1px; background: var(--rule);
     }
 
     .hero-eyebrow {
-      font-size: 9px; letter-spacing: 0.55em; text-transform: uppercase;
-      color: var(--gold); font-weight: 600; margin-bottom: 36px;
-      display: flex; align-items: center; gap: 12px;
-      opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s forwards;
+      font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--tan); margin-bottom: 28px;
     }
-    .hero-eyebrow::before {
-      content: '';
-      display: block; width: 28px; height: 1px;
-      background: var(--gold);
-    }
-
-    .logo-word {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(52px, 9vw, 110px);
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      color: var(--ink);
-      line-height: 1;
-      margin-bottom: 12px;
-      opacity: 0; animation: riseIn 1s cubic-bezier(0.16,1,0.3,1) 0.25s forwards;
-    }
-
-    .logo-sub {
+    .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(13px, 1.4vw, 17px);
-      font-style: italic;
-      color: var(--soft);
-      letter-spacing: 0.08em;
-      margin-bottom: 52px;
-      opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.35s forwards;
+      font-size: clamp(3.2rem, 5vw, 5.5rem);
+      font-weight: 300; line-height: 1.08;
+      letter-spacing: -0.01em; margin-bottom: 28px;
     }
-
-    .hero-headline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 5vw, 72px);
-      font-weight: 500; line-height: 1.05;
-      letter-spacing: -0.01em; color: var(--ink);
-      margin-bottom: 28px;
-      opacity: 0; animation: riseIn 1s cubic-bezier(0.16,1,0.3,1) 0.45s forwards;
-    }
-    .hero-headline em { font-style: italic; color: var(--gold); }
-
+    .hero-title em { font-style: italic; color: var(--mid); }
     .hero-sub {
-      font-size: 14px; letter-spacing: 0.01em;
-      color: var(--mid); font-weight: 400;
-      line-height: 1.9; max-width: 400px;
-      margin-bottom: 44px;
-      opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
+      font-size: 0.95rem; line-height: 1.75; color: var(--mid);
+      max-width: 400px; margin-bottom: 52px;
     }
 
-    .hero-tags {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.75s forwards;
+    /* Form */
+    .form-label {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 16px; display: block;
     }
-    .tag {
-      font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--mid); border: 1px solid var(--pale);
-      padding: 8px 16px; background: var(--bg2);
-    }
-
-    /* ── HERO RIGHT — FORM ── */
-    .hero-right {
-      display: flex; flex-direction: column;
-      justify-content: center;
-      padding: clamp(60px, 8vw, 120px) clamp(40px, 7vw, 112px) clamp(60px, 8vw, 120px) clamp(32px, 5vw, 72px);
-      background: var(--bg2);
-      opacity: 0; animation: riseIn 1s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
-    }
-
-    .form-label-top {
-      font-size: 9px; letter-spacing: 0.55em; text-transform: uppercase;
-      color: var(--gold); font-weight: 600; margin-bottom: 16px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .form-label-top::before {
-      content: '';
-      display: block; width: 20px; height: 1px;
-      background: var(--gold);
-    }
-
-    .form-headline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 3.2vw, 48px);
-      font-weight: 500; line-height: 1.1;
-      color: var(--ink); margin-bottom: 10px;
-    }
-    .form-headline em { font-style: italic; color: var(--gold); }
-
-    .form-sub {
-      font-size: 13px; color: var(--mid);
-      font-weight: 400; letter-spacing: 0.01em;
-      line-height: 1.8; margin-bottom: 44px;
-    }
-
-    /* Fields */
-    .field-group {
-      display: flex; flex-direction: column;
-      margin-bottom: 28px;
-    }
-
-    .field-row {
-      position: relative;
-      border-bottom: 1px solid var(--pale);
-      transition: border-color 0.3s;
-    }
-    .field-row:first-child { border-top: 1px solid var(--pale); }
-    .field-row:focus-within { border-color: var(--gold); }
-
-    .field-row label {
-      display: block;
-      font-size: 8px; letter-spacing: 0.45em;
-      text-transform: uppercase; color: var(--soft);
-      font-weight: 600; padding-top: 18px;
-    }
-
-    .field-row input {
-      width: 100%; background: transparent; border: none; outline: none;
-      padding: 6px 0 16px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px; font-weight: 400;
-      letter-spacing: 0.02em; color: var(--ink);
-      caret-color: var(--gold);
-    }
-    .field-row input::placeholder { color: var(--pale); }
-
-    .field-row label .req { color: var(--gold); font-size: 11px; }
-
-    /* Submit */
-    .submit-btn {
-      width: 100%; padding: 18px;
-      background: var(--ink); color: #fff;
-      border: none; cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 9px; font-weight: 600;
-      letter-spacing: 0.5em; text-transform: uppercase;
-      transition: background 0.3s, letter-spacing 0.3s;
-      position: relative; overflow: hidden;
-    }
-    .submit-btn::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: var(--gold);
-      transform: translateX(-101%);
-      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-    }
-    .submit-btn:hover::after { transform: translateX(0); }
-    .submit-btn span { position: relative; z-index: 1; }
-    .submit-btn:hover { letter-spacing: 0.6em; }
-
-    .gform-wrap {
-      margin-bottom: 16px;
-    }
-    .gform-wrap iframe {
-      min-height: 480px;
-    }
-    .form-note {
-      font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--soft); margin-top: 8px; text-align: center;
-    }
-
-
-
-
-
-    /* Success */
-    .form-success {
-      display: none; text-align: center; padding: 40px 0;
-    }
-    .form-success .s-icon {
-      width: 52px; height: 52px; border-radius: 50%;
-      border: 1px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 28px;
-      font-size: 20px; color: var(--gold);
-    }
-    .form-success p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(20px, 2.2vw, 28px);
-      font-weight: 500; font-style: italic;
-      color: var(--ink); line-height: 1.5;
-    }
-    .form-success span {
-      display: block;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 9px; letter-spacing: 0.4em;
-      text-transform: uppercase; color: var(--soft);
-      margin-top: 16px; font-style: normal;
-    }
-
-    /* ── FEATURES ── */
-    #features {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid var(--pale);
-    }
-
-    .feature {
-      padding: clamp(44px, 6vw, 80px) clamp(28px, 4vw, 60px);
-      border-right: 1px solid var(--pale);
-      display: flex; flex-direction: column;
-      transition: background 0.3s;
-    }
-    .feature:last-child { border-right: none; }
-    .feature:hover { background: var(--bg2); }
-
-    .feature-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px; font-weight: 500;
-      color: var(--gold); letter-spacing: 0.3em;
-      margin-bottom: 24px;
-    }
-
-    .feature-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(20px, 2.2vw, 28px);
-      font-weight: 500; margin-bottom: 16px;
-      color: var(--ink); line-height: 1.2;
-    }
-    .feature-title em { font-style: italic; color: var(--gold); }
-
-    .feature-text {
-      font-size: 13px; line-height: 1.9;
-      color: var(--mid); font-weight: 400;
-    }
-
-    /* ── ABOUT ── */
-    #about {
-      display: grid; grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--pale);
-    }
-
-    .about-left {
-      padding: clamp(80px, 10vw, 140px) clamp(40px, 7vw, 112px);
-      border-right: 1px solid var(--pale);
-      display: flex; flex-direction: column; justify-content: center;
-      background: var(--bg2);
-    }
-
-    .about-eyebrow {
-      font-size: 9px; letter-spacing: 0.55em; text-transform: uppercase;
-      color: var(--gold); font-weight: 600; margin-bottom: 28px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .about-eyebrow::before {
-      content: '';
-      display: block; width: 20px; height: 1px;
-      background: var(--gold);
-    }
-
-    .about-headline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(30px, 3.8vw, 56px);
-      font-weight: 500; line-height: 1.1; color: var(--ink);
-    }
-    .about-headline em { font-style: italic; color: var(--gold); }
-
-    .about-right {
-      padding: clamp(80px, 10vw, 140px) clamp(40px, 7vw, 112px);
-      display: flex; flex-direction: column; justify-content: center;
-    }
-
-    .about-body {
-      font-size: 15px; line-height: 2;
-      color: var(--mid); font-weight: 400;
-    }
-    .about-body p + p { margin-top: 22px; }
-    .about-body em { font-style: italic; color: var(--ink); font-weight: 500; }
-
-    /* ── CTA BAND ── */
-    #cta-band {
-      border-top: 1px solid var(--pale);
-      background: var(--ink);
-      color: #fff;
-      text-align: center;
-      padding: clamp(72px, 10vw, 120px) clamp(24px, 6vw, 80px);
-      position: relative;
-      overflow: hidden;
-    }
-    #cta-band::before {
-      content: 'WYDR';
-      position: absolute;
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(120px, 20vw, 280px);
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      color: rgba(255,255,255,0.03);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      white-space: nowrap;
-    }
-
-    .cta-headline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(32px, 4.5vw, 64px);
-      font-weight: 500; line-height: 1.1;
-      margin-bottom: 20px;
-      position: relative;
-    }
-    .cta-headline em { font-style: italic; color: var(--gold); }
-
-    .cta-sub {
-      font-size: 10px; letter-spacing: 0.45em;
-      text-transform: uppercase; color: rgba(255,255,255,0.4);
-      margin-bottom: 44px;
-      position: relative;
-    }
-
-    .cta-btn {
-      display: inline-block;
-      padding: 18px 52px;
-      border: 1px solid var(--gold);
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 9px; font-weight: 600;
-      letter-spacing: 0.5em; text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.3s, letter-spacing 0.3s;
-      position: relative;
+    .form-row { display: flex; flex-direction: column; gap: 12px; max-width: 420px; }
+    .form-row input {
       background: transparent;
+      border: none; border-bottom: 1px solid var(--rule);
+      padding: 14px 0; font-family: 'Jost', sans-serif;
+      font-size: 0.9rem; font-weight: 300; color: var(--ink);
+      outline: none; transition: border-color 0.2s;
+      width: 100%;
     }
-    .cta-btn:hover {
-      background: var(--gold);
-      letter-spacing: 0.6em;
+    .form-row input::placeholder { color: var(--mid); opacity: 0.6; }
+    .form-row input:focus { border-color: var(--tan); }
+    .form-submit {
+      margin-top: 8px;
+      background: var(--ink); color: var(--off-white);
+      border: none; padding: 16px 40px;
+      font-family: 'Jost', sans-serif; font-size: 0.78rem;
+      font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s, transform 0.15s;
+      align-self: flex-start;
     }
+    .form-submit:hover { background: #333; transform: translateY(-1px); }
+    .form-note {
+      font-size: 0.72rem; color: var(--mid); margin-top: 16px;
+      letter-spacing: 0.05em;
+    }
+    #success-msg {
+      display: none; color: var(--tan); font-size: 0.85rem;
+      letter-spacing: 0.05em; padding: 12px 0;
+    }
+
+    .hero-right {
+      position: relative; overflow: hidden;
+      background: var(--cream);
+    }
+    .hero-right img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center 20%;
+      transition: transform 8s ease;
+    }
+    .hero-right:hover img { transform: scale(1.03); }
+    .hero-img-caption {
+      position: absolute; bottom: 32px; right: 32px;
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(26,24,20,0.4); writing-mode: vertical-rl;
+    }
+
+    /* ── STRIP ── */
+    .strip {
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      display: flex; overflow: hidden;
+    }
+    .strip-item {
+      flex: 1; padding: 36px 32px;
+      border-right: 1px solid var(--rule);
+      text-align: center;
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: var(--tan);
+      display: block; margin-bottom: 4px;
+    }
+    .strip-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 600; letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    /* ── PRODUCT SECTION ── */
+    .section { padding: 120px 72px; }
+    .section-header {
+      display: flex; align-items: baseline; gap: 32px;
+      margin-bottom: 72px;
+    }
+    .section-eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--tan);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.85fr 0.85fr;
+      grid-template-rows: auto auto;
+      gap: 2px;
+    }
+
+    .product-cell {
+      background: var(--cream);
+      overflow: hidden; position: relative;
+    }
+    .product-cell img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .product-cell:hover img { transform: scale(1.04); }
+
+    .product-cell.tall { grid-row: span 2; aspect-ratio: auto; }
+    .product-cell.tall img { height: 100%; min-height: 560px; }
+    .product-cell:not(.tall) { aspect-ratio: 1 / 1; }
+
+    .product-cell-label {
+      position: absolute; bottom: 20px; left: 20px;
+      background: rgba(253,252,250,0.9);
+      padding: 6px 14px;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy {
+      background: var(--ink); color: var(--off-white);
+      padding: 120px 72px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+    .philosophy-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.1;
+    }
+    .philosophy-title em { font-style: italic; color: var(--tan); }
+    .philosophy-right {}
+    .philosophy-text {
+      font-size: 0.95rem; line-height: 1.85; color: rgba(253,252,250,0.65);
+      margin-bottom: 40px;
+    }
+    .philosophy-pillars {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    }
+    .pillar-title {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--tan); margin-bottom: 6px;
+    }
+    .pillar-text {
+      font-size: 0.82rem; line-height: 1.6;
+      color: rgba(253,252,250,0.5);
+    }
+
+    /* ── COLORWAYS ── */
+    .colorways { padding: 120px 72px; background: var(--cream); }
+    .colorway-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+      margin-top: 72px;
+    }
+    .colorway-cell {
+      aspect-ratio: 4/3; overflow: hidden; position: relative;
+      background: var(--off-white);
+    }
+    .colorway-cell img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .colorway-cell:hover img { transform: scale(1.03); }
+    .colorway-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px; background: linear-gradient(transparent, rgba(26,24,20,0.45));
+      color: white;
+    }
+    .colorway-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 300;
+    }
+    .colorway-sub {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* ── WAITLIST 2 ── */
+    .waitlist-2 {
+      padding: 120px 72px;
+      text-align: center; max-width: 640px; margin: 0 auto;
+    }
+    .waitlist-2 .section-eyebrow { margin-bottom: 20px; }
+    .waitlist-2 .hero-title { font-size: clamp(2.4rem, 4vw, 3.8rem); margin-bottom: 20px; }
+    .waitlist-2 .hero-sub { max-width: 100%; margin: 0 auto 48px; }
+    .waitlist-2 .form-row { max-width: 100%; }
+    .waitlist-2 .form-submit { align-self: center; }
 
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--pale);
-      padding: 28px clamp(40px, 7vw, 112px);
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 12px;
+      border-top: 1px solid var(--rule);
+      padding: 40px 72px;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .footer-copy {
-      font-size: 9px; letter-spacing: 0.28em;
-      text-transform: uppercase; color: var(--soft);
-    }
-    .footer-url {
+    .footer-logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 14px; color: var(--soft);
-      font-style: italic; letter-spacing: 0.08em;
+      font-size: 1.3rem; letter-spacing: 0.2em; color: var(--ink);
     }
-    .footer-ig {
-      font-size: 9px; letter-spacing: 0.28em;
-      text-transform: uppercase; color: var(--soft);
-      text-decoration: none;
+    .footer-text { font-size: 0.7rem; color: var(--mid); letter-spacing: 0.1em; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--mid); text-decoration: none; transition: color 0.2s;
     }
-    .footer-ig:hover { color: var(--gold); }
+    .footer-links a:hover { color: var(--ink); }
 
-    /* ── ANIMATIONS ── */
-    @keyframes riseIn {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
+    /* ── FADE IN ── */
     .reveal {
-      opacity: 0; transform: translateY(32px);
-      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
-                  transform 0.9s cubic-bezier(0.16,1,0.3,1);
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .rd1 { transition-delay: 0.1s; }
-    .rd2 { transition-delay: 0.22s; }
-    .rd3 { transition-delay: 0.34s; }
+    .reveal.visible { opacity: 1; transform: none; }
 
     /* ── MOBILE ── */
-    @media (max-width: 768px) {
-      nav { padding: 18px 24px; }
-      .nav-dot { display: none; }
-      #hero { grid-template-columns: 1fr; }
-      .hero-left { border-right: none; border-bottom: 1px solid var(--pale); }
-      #features { grid-template-columns: 1fr; }
-      .feature { border-right: none; border-bottom: 1px solid var(--pale); }
-      .feature:last-child { border-bottom: none; }
-      #about { grid-template-columns: 1fr; }
-      .about-left { border-right: none; border-bottom: 1px solid var(--pale); }
-      footer { flex-direction: column; align-items: flex-start; padding: 24px; }
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 100px 24px 60px; }
+      .hero-left::after { display: none; }
+      .hero-right { aspect-ratio: 4/3; }
+      .strip { flex-wrap: wrap; }
+      .strip-item { flex: 1 1 50%; }
+      .section { padding: 72px 24px; }
+      .philosophy { grid-template-columns: 1fr; padding: 72px 24px; }
+      .colorways { padding: 72px 24px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .product-cell.tall { grid-row: span 1; }
+      .product-cell.tall img { min-height: auto; }
+      .colorway-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 24px; padding: 40px 24px; text-align: center; }
+      .waitlist-2 { padding: 72px 24px; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav id="navbar">
+  <nav>
     <a href="#" class="nav-logo">WYDR</a>
-    <div class="nav-right">
-      <span class="nav-tag">Coming Soon</span>
-      <div class="nav-dot"></div>
-    </div>
+    <span class="nav-tag">Bengaluru · Est. 2025</span>
+    <a href="#waitlist" style="font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink);text-decoration:none;">Join Waitlist</a>
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
-
-    <!-- LEFT: Branding -->
+  <section class="hero" id="top">
     <div class="hero-left">
-      <p class="hero-eyebrow">Wide Toe Box · Premium Leather</p>
-
-      <div class="logo-word">WYDR</div>
-      <p class="logo-sub">What You Doing Right Now?</p>
-
-      <h1 class="hero-headline">
-        Walk wider.<br><em>Live bolder.</em>
-      </h1>
-
-      <p class="hero-sub">
-        Premium leather shoes with a wide toe box — designed for natural comfort without compromising on style. Your feet deserve better.
+      <span class="hero-eyebrow reveal">Wide Toe Box · Handcrafted Leather</span>
+      <h1 class="hero-title reveal">Shoes built<br>for <em>your</em><br>feet.</h1>
+      <p class="hero-sub reveal">
+        Most shoes are built for a last, not a foot. WYDR is built around the natural shape of yours — wide toe box, handcrafted construction, full-grain leather. Made to last decades, not seasons.
       </p>
 
-      <div class="hero-tags">
-        <span class="tag">Wide Toe Box</span>
-        <span class="tag">Full Grain Leather</span>
-        <span class="tag">Limited Drops</span>
-        <span class="tag">Made in India</span>
-        <span class="tag">Early Access</span>
-      </div>
+      <a href="#waitlist" class="form-submit reveal" style="align-self:flex-start;text-decoration:none;display:inline-block;">Join the Waitlist</a>
     </div>
 
-    <!-- RIGHT: Form -->
     <div class="hero-right">
-      <p class="form-label-top">Request Early Access</p>
-      <h2 class="form-headline">
-        Be first<br><em>in line.</em>
-      </h2>
-      <p class="form-sub">
-        Fill in your details and we'll notify you the moment the collection drops.
-      </p>
-      <div class="gform-wrap">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSfMNXHUSKKwS6Odw2YbcaNqo70KZ8Dc7RYMWDDY6FMVkEFygg/viewform?embedded=true"
-          width="100%"
-          height="520"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          style="border:none; display:block;">
-          Loading…
-        </iframe>
+      <!-- Replace src with your actual image filename -->
+      <img src="wydr-black-side.jpg" alt="WYDR wide toe box Derby in black full-grain leather" loading="eager" />
+      <span class="hero-img-caption">The Derby · Black</span>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-item reveal"><span class="strip-desc">Room for Your Toes</span></div>
+    <div class="strip-item reveal"><span class="strip-desc">Built by Hand</span></div>
+    <div class="strip-item reveal"><span class="strip-desc">Leather That Lasts</span></div>
+  </div>
+
+  <!-- PRODUCT SECTION -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-eyebrow reveal">The Derby</span>
+      <h2 class="section-title reveal">Two colourways.<br>One silhouette.</h2>
+    </div>
+    <div class="product-grid">
+      <div class="product-cell tall reveal">
+        <img src="wydr-black-front.jpg" alt="WYDR Derby black front view" />
+        <span class="product-cell-label">Black · Front</span>
       </div>
-      <p class="form-note">No spam. Just the drop, when it's ready.</p>
-    </div>
+      <div class="product-cell reveal">
+        <img src="wydr-tan-top.jpg" alt="WYDR Derby tan top-down view" />
+        <span class="product-cell-label">Tan · Top</span>
+      </div>
+      <div class="product-cell reveal">
+        <img src="wydr-insole.jpg" alt="WYDR branded insole detail" />
+        <span class="product-cell-label">Insole Detail</span>
+      </div>
+      <div class="product-cell reveal">
+        <img src="wydr-black-top.jpg" alt="WYDR Derby black top-down view" />
+        <span class="product-cell-label">Black · Top</span>
+      </div>
 
-  </section>
-
-  <!-- FEATURES -->
-  <section id="features">
-    <div class="feature reveal">
-      <p class="feature-num">01</p>
-      <h3 class="feature-title">Wide <em>Toe Box</em></h3>
-      <p class="feature-text">
-        Engineered with a naturally wide toe box that lets your toes splay and breathe. No more cramped, uncomfortable footwear.
-      </p>
-    </div>
-    <div class="feature reveal rd1">
-      <p class="feature-num">02</p>
-      <h3 class="feature-title">Full Grain <em>Leather</em></h3>
-      <p class="feature-text">
-        Crafted from premium full-grain veg-tanned leather that ages beautifully. Each pair develops a unique patina over time.
-      </p>
-    </div>
-    <div class="feature reveal rd2">
-      <p class="feature-num">03</p>
-      <h3 class="feature-title">Built to <em>Last</em></h3>
-      <p class="feature-text">
-        Handcrafted in India with meticulous attention to detail. Durable construction that stands the test of time, not fast fashion.
-      </p>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-left">
-      <p class="about-eyebrow reveal">The Brand</p>
-      <h2 class="about-headline reveal rd1">
-        Not just<br>a shoe.<br><em>A movement.</em>
+  <!-- PHILOSOPHY -->
+  <section class="philosophy">
+    <div>
+      <h2 class="philosophy-title reveal">
+        Built to be<br>worn for<br><em>a lifetime.</em>
       </h2>
     </div>
-    <div class="about-right">
-      <div class="about-body reveal rd2">
-        <p>
-          WYDR was born from a simple belief — your shoes should fit <em>your</em> feet, not the other way around. We're challenging the industry standard of narrow, uncomfortable footwear with premium leather shoes designed around the natural shape of your foot.
-        </p>
-        <p>
-          Wide toe box meets timeless leather craftsmanship. Every pair is built for people who refuse to choose between comfort and style. We're not making shoes for everyone — we're making them for the ones who walk their own way.
-        </p>
-        <p>
-          The first drop is coming. Be ready.
-        </p>
+    <div class="philosophy-right">
+      <p class="philosophy-text reveal">
+        We started WYDR because we were frustrated with shoes that compressed our toes, fell apart in two years, and couldn't be repaired. The wide toe box market in India barely exists. We're changing that — with leather that ages beautifully, construction that holds, and a cobbler-friendly design that means your shoes last as long as you want them to.
+      </p>
+      <div class="philosophy-pillars">
+
+        <div class="reveal">
+          <p class="pillar-title">Material</p>
+          <p class="pillar-text">Full-grain leather that patinas, not peels.</p>
+        </div>
+        <div class="reveal">
+          <p class="pillar-title">Fit</p>
+          <p class="pillar-text">Wide toe box. Your toes spread naturally with every step.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- CTA BAND -->
-  <section id="cta-band">
-    <h2 class="cta-headline reveal">Don't miss<br><em>the drop.</em></h2>
-    <p class="cta-sub reveal rd1">Limited spots · First collection</p>
-    <a href="#hero" class="cta-btn reveal rd2">Get Early Access</a>
+  <!-- COLORWAYS -->
+  <section class="colorways" id="colorways">
+    <div class="section-header">
+      <span class="section-eyebrow reveal">Colorways</span>
+      <h2 class="section-title reveal">Both editions<br>available at launch.</h2>
+    </div>
+    <div class="colorway-grid">
+      <div class="colorway-cell reveal">
+        <img src="wydr-black-side.jpg" alt="WYDR Derby in black" />
+        <div class="colorway-info">
+          <p class="colorway-name">Noir</p>
+          <p class="colorway-sub">Black Full-grain</p>
+        </div>
+      </div>
+      <div class="colorway-cell reveal">
+        <img src="wydr-tan-top-2.jpg" alt="WYDR Derby in tan" />
+        <div class="colorway-info">
+          <p class="colorway-name">Havana</p>
+          <p class="colorway-sub">Tan Full-grain</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST CTA -->
+  <section class="waitlist-2" id="waitlist">
+    <span class="section-eyebrow reveal">Early Access</span>
+    <h2 class="hero-title reveal">Get notified<br>at launch.</h2>
+    <p class="hero-sub reveal">We're releasing a limited first batch. Waitlist members get priority access and a small early-bird discount.</p>
+
+    <form class="form-row reveal" id="waitlist-form-bottom" action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="hidden_iframe" onsubmit="showSuccess('success-bottom')">
+      <input type="text" name="entry.NAME_FIELD" placeholder="Full name" required />
+      <input type="email" name="entry.EMAIL_FIELD" placeholder="Email address" required />
+      <input type="tel" name="entry.PHONE_FIELD" placeholder="Phone (optional)" />
+      <button type="submit" class="form-submit">Reserve My Spot</button>
+    </form>
+    <p id="success-bottom" class="form-note" style="display:none;color:var(--tan)">You're on the list. We'll be in touch.</p>
+    <p class="form-note reveal" style="text-align:center;margin-top:16px">No spam. Just a heads-up when we're live.</p>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-copy">© 2026 WYDR. All rights reserved.</span>
-    <span class="footer-url">wydr.store</span>
-    <a href="https://instagram.com/wydr.official" class="footer-ig" target="_blank">@wydr.official</a>
+    <span class="footer-logo">WYDR</span>
+    <span class="footer-text">wydr.store · Bengaluru, India</span>
+    <div class="footer-links">
+      <a href="https://instagram.com/wydr.store" target="_blank">Instagram</a>
+      <a href="mailto:hello@wydr.store">Contact</a>
+    </div>
   </footer>
 
-  <script>
-    // Nav scroll
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    });
+  <iframe name="hidden_iframe" style="display:none"></iframe>
 
+  <script>
     // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
+      entries.forEach((e, i) => {
         if (e.isIntersecting) {
-          e.target.classList.add('visible');
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
           observer.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
 
-    // Form submission via Netlify Forms
-    const form = document.getElementById('wl-form');
-    const btn  = document.getElementById('submit-btn');
-    const succ = document.getElementById('form-success');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      btn.querySelector('span').textContent = 'Submitting…';
-      btn.style.opacity = '0.6';
-      btn.disabled = true;
-
-      try {
-        const res = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(new FormData(form)).toString()
-        });
-        if (res.ok) {
-          form.style.display = 'none';
-          succ.style.display = 'block';
-        } else {
-          btn.querySelector('span').textContent = 'Try Again';
-          btn.style.opacity = '1';
-          btn.disabled = false;
-        }
-      } catch {
-        btn.querySelector('span').textContent = 'Try Again';
-        btn.style.opacity = '1';
-        btn.disabled = false;
-      }
-    });
+    // Success message
+    function showSuccess(id) {
+      setTimeout(() => {
+        document.getElementById(id).style.display = 'block';
+      }, 600);
+    }
   </script>
 </body>
 </html>
