@@ -82,22 +82,55 @@
       max-width: 400px; margin-bottom: 52px;
     }
 
-    /* Form */
+    /* ── FORM ── */
     .form-label {
       font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--mid); margin-bottom: 16px; display: block;
     }
     .form-row { display: flex; flex-direction: column; gap: 12px; max-width: 420px; }
-    .form-row input {
+
+    .form-row input,
+    .form-row select {
       background: transparent;
       border: none; border-bottom: 1px solid var(--rule);
       padding: 14px 0; font-family: 'Jost', sans-serif;
       font-size: 0.9rem; font-weight: 300; color: var(--ink);
       outline: none; transition: border-color 0.2s;
       width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0;
     }
     .form-row input::placeholder { color: var(--mid); opacity: 0.6; }
-    .form-row input:focus { border-color: var(--tan); }
+    .form-row input:focus,
+    .form-row select:focus { border-color: var(--tan); }
+
+    /* Select wrapper for custom arrow */
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap::after {
+      content: '';
+      position: absolute; right: 4px; top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid var(--mid);
+      pointer-events: none;
+    }
+    .form-row select option { color: var(--ink); background: var(--off-white); }
+    .form-row select option[value=""] { color: var(--mid); }
+    .form-row select { color: var(--mid); }
+    .form-row select.filled { color: var(--ink); }
+
+    /* Two column row for size + colour */
+    .form-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
     .form-submit {
       margin-top: 8px;
       background: var(--ink); color: var(--off-white);
@@ -108,11 +141,13 @@
       align-self: flex-start;
     }
     .form-submit:hover { background: #333; transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
     .form-note {
       font-size: 0.72rem; color: var(--mid); margin-top: 16px;
       letter-spacing: 0.05em;
     }
-    #success-msg {
+    .success-msg {
       display: none; color: var(--tan); font-size: 0.85rem;
       letter-spacing: 0.05em; padding: 12px 0;
     }
@@ -171,13 +206,11 @@
       font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300;
     }
 
-    /* Product Grid */
     .product-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 2px;
     }
-
     .product-cell {
       background: var(--cream);
       overflow: hidden; position: relative;
@@ -189,7 +222,6 @@
       display: block;
     }
     .product-cell:hover img { transform: scale(1.04); }
-
     .product-cell-label {
       position: absolute; bottom: 20px; left: 20px;
       background: rgba(253,252,250,0.9);
@@ -210,7 +242,6 @@
       font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.1;
     }
     .philosophy-title em { font-style: italic; color: var(--tan); }
-    .philosophy-right {}
     .philosophy-text {
       font-size: 0.95rem; line-height: 1.85; color: rgba(253,252,250,0.65);
       margin-bottom: 40px;
@@ -256,12 +287,12 @@
       opacity: 0.8;
     }
 
-    /* ── WAITLIST 2 ── */
+    /* ── WAITLIST SECTION ── */
     .waitlist-2 {
       padding: 120px 72px;
       text-align: center; max-width: 640px; margin: 0 auto;
     }
-    .waitlist-2 .section-eyebrow { margin-bottom: 20px; }
+    .waitlist-2 .section-eyebrow { margin-bottom: 20px; display: block; }
     .waitlist-2 .hero-title { font-size: clamp(2.4rem, 4vw, 3.8rem); margin-bottom: 20px; }
     .waitlist-2 .hero-sub { max-width: 100%; margin: 0 auto 48px; }
     .waitlist-2 .form-row { max-width: 100%; }
@@ -305,11 +336,10 @@
       .philosophy { grid-template-columns: 1fr; padding: 72px 24px; }
       .colorways { padding: 72px 24px; }
       .product-grid { grid-template-columns: 1fr; }
-      .product-cell.tall { grid-row: span 1; }
-      .product-cell.tall img { min-height: auto; }
       .colorway-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 24px; padding: 40px 24px; text-align: center; }
       .waitlist-2 { padding: 72px 24px; }
+      .form-two-col { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -318,7 +348,6 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">WYDR</a>
-
     <a href="#waitlist" style="font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink);text-decoration:none;">Join Waitlist</a>
   </nav>
 
@@ -330,12 +359,9 @@
       <p class="hero-sub reveal">
         Most shoes are built for a last, not a foot. WYDR is built around the natural shape of yours — wide toe box, handcrafted construction, full-grain leather. Made to last decades, not seasons.
       </p>
-
       <a href="#waitlist" class="form-submit reveal" style="align-self:flex-start;text-decoration:none;display:inline-block;">Join the Waitlist</a>
     </div>
-
     <div class="hero-right">
-      <!-- Replace src with your actual image filename -->
       <img src="wydr-black-front.png" alt="WYDR wide toe box Derby in black full-grain leather" loading="eager" />
       <span class="hero-img-caption">The Derby · Black</span>
     </div>
@@ -382,7 +408,6 @@
         We started WYDR because we were frustrated with shoes that compressed our toes, fell apart in two years, and couldn't be repaired. The wide toe box market in India barely exists. We're changing that — with leather that ages beautifully, construction that holds, and a cobbler-friendly design that means your shoes last as long as you want them to.
       </p>
       <div class="philosophy-pillars">
-
         <div class="reveal">
           <p class="pillar-title">Material</p>
           <p class="pillar-text">Full-grain leather that patinas, not peels.</p>
@@ -391,7 +416,6 @@
           <p class="pillar-title">Fit</p>
           <p class="pillar-text">Wide toe box. Your toes spread naturally with every step.</p>
         </div>
-
       </div>
     </div>
   </section>
@@ -421,19 +445,54 @@
   </section>
 
   <!-- WAITLIST CTA -->
-  <section class="waitlist-2" id="waitlist">
-    <span class="section-eyebrow reveal">Early Access</span>
-    <h2 class="hero-title reveal">Get notified<br>at launch.</h2>
-    <p class="hero-sub reveal">We're releasing a limited first batch. Waitlist members get priority access and a small early-bird discount.</p>
+  <section id="waitlist" style="padding: 120px 72px;">
+    <div style="max-width: 560px; margin: 0 auto; text-align: center;">
+      <span class="section-eyebrow reveal" style="display:block; margin-bottom: 20px;">Early Access</span>
+      <h2 class="hero-title reveal" style="font-size: clamp(2.4rem, 4vw, 3.8rem); margin-bottom: 20px;">Get notified<br>at launch.</h2>
+      <p class="hero-sub reveal" style="max-width: 100%; margin: 0 auto 48px;">We're releasing a limited first batch. Waitlist members get priority access and a small early-bird discount.</p>
 
-    <form class="form-row reveal" id="waitlist-form-bottom" action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="hidden_iframe" onsubmit="showSuccess('success-bottom')">
-      <input type="text" name="entry.NAME_FIELD" placeholder="Full name" required />
-      <input type="email" name="entry.EMAIL_FIELD" placeholder="Email address" required />
-      <input type="tel" name="entry.PHONE_FIELD" placeholder="Phone (optional)" />
-      <button type="submit" class="form-submit">Reserve My Spot</button>
-    </form>
-    <p id="success-bottom" class="form-note" style="display:none;color:var(--tan)">You're on the list. We'll be in touch.</p>
-    <p class="form-note reveal" style="text-align:center;margin-top:16px">No spam. Just a heads-up when we're live.</p>
+      <form class="form-row reveal" id="waitlist-form" action="https://api.web3forms.com/submit" method="POST">
+
+        <!-- Replace YOUR_ACCESS_KEY_HERE with the key from your Web3Forms email -->
+        <input type="hidden" name="access_key" value="29315893-f27b-4122-9d27-b9c0f25f9383" />
+        <input type="hidden" name="subject" value="New WYDR Waitlist Signup" />
+        <input type="hidden" name="from_name" value="WYDR Waitlist" />
+        <input type="checkbox" name="botcheck" style="display:none;" />
+
+        <input type="text" name="name" placeholder="Full name" required />
+        <input type="email" name="email" placeholder="Email address" required />
+        <input type="tel" name="phone" placeholder="Phone number" required />
+
+        <div class="form-two-col">
+          <div class="select-wrap">
+            <select name="shoe_size" id="size-select" required>
+              <option value="" disabled selected>Shoe size (UK)</option>
+              <option value="UK 5">UK 5</option>
+              <option value="UK 6">UK 6</option>
+              <option value="UK 7">UK 7</option>
+              <option value="UK 8">UK 8</option>
+              <option value="UK 9">UK 9</option>
+              <option value="UK 10">UK 10</option>
+              <option value="UK 11">UK 11</option>
+              <option value="UK 12">UK 12</option>
+            </select>
+          </div>
+          <div class="select-wrap">
+            <select name="preferred_colour" id="colour-select" required>
+              <option value="" disabled selected>Preferred colour</option>
+              <option value="Black (Noir)">Black — Noir</option>
+              <option value="Tan (Havana)">Tan — Havana</option>
+              <option value="Both">Both</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="form-submit" id="submit-btn">Reserve My Spot</button>
+      </form>
+
+      <p id="success-msg" class="success-msg">You're on the list. We'll be in touch when we launch.</p>
+      <p class="form-note reveal" style="text-align:center; margin-top:16px;">No spam. Just a heads-up when we're live.</p>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -445,8 +504,6 @@
       <a href="mailto:hello@wydr.store">Contact</a>
     </div>
   </footer>
-
-  <iframe name="hidden_iframe" style="display:none"></iframe>
 
   <script>
     // Scroll reveal
@@ -461,12 +518,38 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
 
-    // Success message
-    function showSuccess(id) {
-      setTimeout(() => {
-        document.getElementById(id).style.display = 'block';
-      }, 600);
-    }
+    // Make selects turn ink-coloured once a value is picked
+    ['size-select', 'colour-select'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('change', () => el.classList.add('filled'));
+    });
+
+    // Web3Forms submission
+    const form = document.getElementById('waitlist-form');
+    const successMsg = document.getElementById('success-msg');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      const data = new FormData(form);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Reserve My Spot';
+        alert('Something went wrong. Please try again.');
+      }
+    });
   </script>
 </body>
 </html>
